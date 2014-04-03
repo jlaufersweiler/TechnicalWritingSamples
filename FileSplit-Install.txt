@@ -1,0 +1,40 @@
+*****************************OVERVIEW**********************************
+Enclosed in this archive are a batch sctipt, lunch.bat, an empty folder called "Files"
+and a folder containing the executable filesplit.exe and its supporting files. 
+
+"lunch.bat" contains various directory paths and configuration data 
+specific to your environment, and commands to call first call filesplit.exe  
+to process your cafe balance files into seperate files for succesive phone 
+number instances, rename the original files with the .OLD suffix appended, 
+then call the ALF to launch seperate broadcasts to each file sequentially. 
+Thus calls will be made on a student by studen basis rather than on a 
+unique phone number basis.
+
+Before use, the ALF will need to be configured for several lunch balance calls 
+for each school, one for each of the files creaated by filesplit.exe. Within 
+the ALF Config Tool, the lunch broadcasts must have sequential config IDs, and 
+the sequence must be the same from one school to the next.  If this is not 
+practical, seperate scheduled tasks may be created for finer control over the 
+ALF broadcasts.
+
+
+*******************************SETUP**********************************
+The lunch.bat has already been configured for the file locations and names 
+you privided to SchoolReach.  So setup is fairly minimal.
+
+1)	Place the contents of this folder (lunch.bat, and the two folders)
+	in C:\SchoolReach\AutoLaunchFacillitator\
+
+2) 	In the File Splitter folder, double click on dryrun.bat
+	This will move your cafe balance files to the "Files" folder, then
+	will run filesplit.exe with the same options as lunch.bat, but will 
+	not rename the source files nor run the ALF.
+
+3)	Run the ALF Config Tool to point a broadcast at each of the generated 
+    	files for each school in Files. Make sure that the sequence of ID's is the same
+	for each school. For example, if one school has lunch calls with IDs 1A0-1A4, 
+	the next school's ID's should be 2A0-2A4, and so on.
+	
+4)	Set up a Scheduled Task to run lunch.bat at the time you wish the lunch
+    	balance calls to begin.
+	

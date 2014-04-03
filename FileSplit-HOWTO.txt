@@ -1,0 +1,44 @@
+	The purpose of filesplit.exe is to parse records from one or more files, 
+which may contain multiple people with the same phone number, and distrubute 
+those records among several files according to successive instances of each
+unique phone number.
+ 
+	For a given source  file "example.csv," a file "example._1.csv" would be
+created containing only records with the first instance of each unique 
+phone number.  A file called "example_2.csv" would contain any second number
+instances, and so on up to a maximum specified via at runtime (default is 6). 
+After parsing, the source file is renamed with the .OLD extension appended.
+
+	Source data files must be delimited text with either comma, tab, colon, 
+semi-colon, or pipe as the delimiter.  They must have a .3 character extension 
+but no specific extension is required. The delimiter is assumed to be comma
+unless a runtime argument specifies otherwise. 
+
+	Command line arguments passed at runtime arguments specify the target file
+(or group of files matched via wildcards * or ?), the file's delimiter, and 
+other options.  These can also be vewed by running filesplit.exe -h
+
+Usage: filesplit.exe [options]
+
+Options:
+  -h, --help            show this help message and exit
+  -f <FILE-PATH>, --file=<FILE-PATH>
+                         (REQUIRED)Specify SOURCE FILE containing data.   May
+                        be absolute or relative path.
+  -d <DELIMITER-CHAR>, --delimiter=<DELIMITER-CHAR>
+                        Specify DELIMITER in source data from among , | : or ;
+                        \N(Default is comma) use -t argument for TAB
+  -t, --tab_delim       Specify DELIMITER in source data from as TAB
+  -p <HEADER-STRING>, --phone_header=<HEADER-STRING>
+                        Specify the Header String for the PHONE NUMBER column.
+                        -p takes precedence over -c if both are passed.
+  -c <INTEGER>, --phone_column=<INTEGER>
+                        If headers are absent, specify the number of the PHONE
+                        NUMBER column. (Without header, defailt is 3)
+  -e, --erase           ERASES records from SOURCE FILE when finished.
+  -m <INTEGER>, --max_instances=<INTEGER>
+                        Sets the upper limit on duplicate PHONE NUMBER
+                        instances. (Default is 6)
+  -w, --write_all       Create output files up to max instances even if empty.
+                        (Default False)
+
